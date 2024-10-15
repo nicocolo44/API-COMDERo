@@ -16,7 +16,7 @@ const controller = {
             res.json(data);
             dataService.resetModificado();
         } catch (error) {
-            res.status(500).json({ error: 'Error al obtener los datos' });
+            res.status(500);
         }
     },
 

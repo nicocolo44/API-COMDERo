@@ -1,5 +1,7 @@
 {
     "hora": "14:30:00",
     "gramos": 35,
-    "modificado": false
+    "modificado": false,
+    "pesoPlato": 0,
+    "pesoBalde": 0
   }

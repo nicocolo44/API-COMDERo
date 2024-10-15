@@ -6,9 +6,12 @@ const controller = require('../controllers/controller');
 router.get('/data/user', controller.getDataUser);
 
 // Ruta para obtener datos (micro)
-router.get('/data/micro', controller.getDataMicro);
+router.put('/micro', controller.getDataMicro);
 
 // Ruta para actualizar datos
 router.put('/data', controller.updateData);
+
+// Ruta para dar comida
+router.put('/darComida', controller.darComida);
 
 module.exports = router;

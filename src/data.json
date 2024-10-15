@@ -1,5 +1,8 @@
 {
   "hora": "14:38",
-  "gramos": "5",
-  "modificado": false
+  "gramos": "120",
+  "modificado": true,
+  "plateWeight": 12,
+  "bucketWeight": 123,
+  "darComida": false
 }

@@ -16,7 +16,7 @@ const writeData = (data) => {
     fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), 'utf8');
 }
 
-const updateData = (hora, gramos) => {
+const updateDataFromUser = (hora, gramos) => {
     const data = readData();
     data.hora = hora;
     data.gramos = gramos;
@@ -25,31 +25,49 @@ const updateData = (hora, gramos) => {
     return data;
 }
 
+const updateDataFromMicro = (platerWeight, bucketWeight) => {
+    const data = readData();
+    data.plateWeight = platerWeight;
+    data.bucketWeight = bucketWeight;
+    writeData(data);
+    return data;
+}
+
 const getData = () => {
     return readData();
 }
 
-const resetModificado = () => {
+const reset = () => {
     const data = readData();
     data.modificado = false;
+    data.darComida = false;
     writeData(data);
     return data;
 }
 
 const clearData = () => {
-    const emptyData = { hora: '', gramos: 0, modificado: false };
+    const emptyData = { hora: '', gramos: 0, modificado: false, platerWeight: '', bucketWeight: '' };
     writeData(emptyData);
     return emptyData;
 }
 
 const createData = (hora, gramos) => {
-    return updateData(hora, gramos);
+    return updateDataFromUser(hora, gramos);
+}
+
+const setDarComida = () => {
+    const data = readData();
+    data.darComida = true;
+    writeData(data);
+    return data;
 }
 
 module.exports = {
     getData,
-    updateData,
+    updateDataFromUser,
+    updateDataFromMicro,
     createData,
-    resetModificado,
-    clearData
+    reset,
+    clearData,
+    setDarComida
 };

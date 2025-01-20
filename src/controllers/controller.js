@@ -32,8 +32,10 @@ const controller = {
             }
             console.log("Retorno de Data Micro: ", microData)
             console.log("Aux: ", aux)
+            aux = dataService.reset();
+            console.log("Data reseteada: ", aux)
             res.json(microData);
-            dataService.reset();
+            
         } catch (error) {
             res.status(500).json({ error: 'Error al procesar los datos del microcontrolador' });
         }

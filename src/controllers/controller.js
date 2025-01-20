@@ -21,9 +21,12 @@ const controller = {
                 modificado: data.modificado,
                 darComida: data.darComida
             };
-            const { plateWeight, bucketWeight } = req.body;
+            const { plateWeight, bucketWeight, hora, gramos} = req.body;
             if (plateWeight && bucketWeight) {
                 dataService.updateDataFromMicro(plateWeight, bucketWeight);
+            }
+            if(hora && gramos) {
+                dataService.updateDataFromUser(hora, gramos, true);
             }
             console.log("Retorno de Data Micro: ", microData)
             res.json(microData);

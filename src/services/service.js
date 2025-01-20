@@ -16,11 +16,13 @@ const writeData = (data) => {
     fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), 'utf8');
 }
 
-const updateDataFromUser = (hora, gramos) => {
+const updateDataFromUser = (hora, gramos, isFromMicro = false) => {
     const data = readData();
     data.hora = hora;
     data.gramos = gramos;
-    data.modificado = true;
+    if(!isFromMicro){
+        data.modificado = true;
+    }  
     writeData(data);
     return data;
 }

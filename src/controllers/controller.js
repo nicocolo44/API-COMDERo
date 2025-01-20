@@ -26,6 +26,7 @@ const controller = {
                 dataService.updateDataFromMicro(plateWeight, bucketWeight);
             }
             if(hora && gramos) {
+                console.log("Actualizando data desde micro: ", hora, gramos)
                 dataService.updateDataFromUser(hora, gramos, true);
             }
             console.log("Retorno de Data Micro: ", microData)

@@ -24,16 +24,20 @@ const controller = {
             let aux;
             const { plateWeight, bucketWeight, hora, gramos} = req.body;
             if (plateWeight && bucketWeight) {
+                if(plateWeight > 10000 || bucketWeight > 10000) {
+                    return res.status(400).json({ error: 'El valor de peso debe ser menor a 256' });
+                }
                 aux = dataService.updateDataFromMicro(plateWeight, bucketWeight);
             }
             if(hora && gramos) {
+                if (gramos > 256) {
+                    return res.status(400).json({ error: 'El valor de gramos debe ser menor a 256' });
+                }
                 console.log("Actualizando data desde micro: ", hora, gramos)
                 dataService.updateDataFromUser(hora, gramos, true);
             }
             console.log("Retorno de Data Micro: ", microData)
-            console.log("Aux: ", aux)
             aux = dataService.reset();
-            console.log("Data reseteada: ", aux)
             res.json(microData);
             
         } catch (error) {
@@ -47,6 +51,9 @@ const controller = {
             const { hora, gramos } = req.body;
             if (!hora || !gramos) {
                 return res.status(400).json({ error: 'Se requieren hora y gramos' });
+            }
+            if (gramos > 256) {
+                return res.status(400).json({ error: 'El valor de gramos debe ser menor a 256' });
             }
             const updatedData = dataService.updateDataFromUser(hora, gramos);
             console.log("Data actualizada: ", updatedData)

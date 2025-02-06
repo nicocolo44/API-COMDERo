@@ -30,7 +30,7 @@ const controller = {
                 aux = dataService.updateDataFromMicro(plateWeight, bucketWeight);
             }
             if(hora && gramos) {
-                if (gramos > 256) {
+                if (gramos > 256 || hora > 10000) {
                     return res.status(400).json({ error: 'El valor de gramos debe ser menor a 256' });
                 }
                 console.log("Actualizando data desde micro: ", hora, gramos)

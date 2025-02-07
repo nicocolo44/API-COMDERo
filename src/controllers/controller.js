@@ -22,19 +22,13 @@ const controller = {
                 darComida: data.darComida
             };
             let aux;
-            const { plateWeight, bucketWeight, hora, gramos} = req.body;
+            const { plateWeight, bucketWeight } = req.body;
             if (plateWeight && bucketWeight) {
+                console.log("Error en data desde micro: ", plateWeight, bucketWeight)
                 if(plateWeight > 10000 || bucketWeight > 10000) {
                     return res.status(400).json({ error: 'El valor de peso debe ser menor a 256' });
                 }
                 aux = dataService.updateDataFromMicro(plateWeight, bucketWeight);
-            }
-            if(hora && gramos) {
-                if (gramos > 256 || hora > 10000) {
-                    return res.status(400).json({ error: 'El valor de gramos debe ser menor a 256' });
-                }
-                console.log("Actualizando data desde micro: ", hora, gramos)
-                dataService.updateDataFromUser(hora, gramos, true);
             }
             console.log("Retorno de Data Micro: ", microData)
             aux = dataService.reset();
@@ -72,6 +66,39 @@ const controller = {
             res.json(data);
         } catch (error) {
             res.status(500).json({ error: 'Error al dar comida' });
+        }
+    },
+
+    actualizarHoraDesdeMicro: (req, res) => {
+        try {
+            console.log("Empieza actualizarHoraDesdeMicro con parametros ", req.body)
+            const { hora } = req.body;
+            if (!hora) {
+                return res.status(400).json({ error: 'Se requiere la hora' });
+            }
+            const updatedData = dataService.updateHoraFromMicro(hora);
+            console.log("Data actualizada: ", updatedData)
+            res.json(updatedData);
+        } catch (error) {
+            res.status(500).json({ error: 'Error al actualizar los datos' });
+        }
+    },
+
+    actualizarGramosDesdeMicro: (req, res) => {
+        try {
+            console.log("Empieza actualizarGramosDesdeMicro con parametros ", req.body)
+            const { gramos } = req.body;
+            if (!gramos) {
+                return res.status(400).json({ error: 'Se requieren los gramos' });
+            }
+            if (gramos > 256) {
+                return res.status(400).json({ error: 'El valor de gramos debe ser menor a 256' });
+            }
+            const updatedData = dataService.updateGramosFromMicro(gramos);
+            console.log("Data actualizada: ", updatedData)
+            res.json(updatedData);
+        } catch (error) {
+            res.status(500).json({ error: 'Error al actualizar los datos' });
         }
     }
 

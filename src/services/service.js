@@ -64,6 +64,20 @@ const setDarComida = () => {
     return data;
 }
 
+const updateGramosFromMicro = (gramos) => {
+    const data = readData();
+    data.gramos = gramos;
+    writeData(data);
+    return data;
+}
+
+const updateHoraFromMicro = (hora) => {
+    const data = readData();
+    data.hora = hora;
+    writeData(data);
+    return data;
+}
+
 module.exports = {
     getData,
     updateDataFromUser,
@@ -71,5 +85,7 @@ module.exports = {
     createData,
     reset,
     clearData,
-    setDarComida
+    setDarComida,
+    updateGramosFromMicro,
+    updateHoraFromMicro
 };

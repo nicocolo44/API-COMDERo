@@ -24,8 +24,8 @@ const controller = {
             let aux;
             const { plateWeight, bucketWeight } = req.body;
             if (plateWeight && bucketWeight) {
-                console.log("Error en data desde micro: ", plateWeight, bucketWeight)
                 if(plateWeight > 10000 || bucketWeight > 10000) {
+                    console.log("Error en data desde micro: ", plateWeight, bucketWeight)
                     return res.status(400).json({ error: 'El valor de peso debe ser menor a 256' });
                 }
                 aux = dataService.updateDataFromMicro(plateWeight, bucketWeight);

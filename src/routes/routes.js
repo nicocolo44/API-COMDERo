@@ -15,9 +15,9 @@ router.put('/data', controller.updateData);
 router.put('/darComida', controller.darComida);
 
 // Ruta para actualizar gramos (micro)
-router.put('/gramos', controller.updateGramosFromMicro);
+router.put('/gramos', controller.actualizarGramosDesdeMicro);
 
 // Ruta para actualizar hora (micro)
-router.put('/hora', controller.updateHoraFromMicro);
+router.put('/hora', controller.actualizarHoraDesdeMicro);
 
 module.exports = router;

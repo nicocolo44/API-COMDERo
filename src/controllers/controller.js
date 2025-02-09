@@ -49,6 +49,9 @@ const controller = {
             if (gramos > 256) {
                 return res.status(400).json({ error: 'El valor de gramos debe ser menor a 256' });
             }
+            if (gramos <= 0) {
+                return res.status(400).json({ error: 'El valor de gramos debe ser mayor a 0' });
+            }
             const updatedData = dataService.updateDataFromUser(hora, gramos);
             console.log("Data actualizada: ", updatedData)
             res.json(updatedData);
